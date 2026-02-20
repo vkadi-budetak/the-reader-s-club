@@ -33,7 +33,7 @@ export default function NavBar() {
       <div className="h-4 w-px bg-zinc-800" />
 
       <Link
-        href="/sign-in"
+        href="/sign-up-page"
         className="text-sm font-serif font-bold bg-red-900 text-white px-5 py-2 rounded-sm hover:bg-red-700 transition-all shadow-[0_0_15px_rgba(153,27,27,0.2)] uppercase tracking-tighter"
       >
         Join the Circle

@@ -3,9 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    // Змінюємо bg-gray-900 на bg-black для максимальної глибини
     <div className="relative min-h-[calc(100vh-64px)] flex items-center bg-black overflow-hidden">
-      {/* 1. Картинка (твоя 123.jpg) */}
       <div className="absolute top-0 right-0 w-[70%] h-full">
         <Image
           src="/hero.jpg"
@@ -14,7 +12,6 @@ export default function Home() {
           priority
           className="object-cover grayscale-30% contrast-110%" // Додав трохи грейскейлу та контрасту для атмосфери
         />
-        {/* 2. Тінь/Градієнт: тепер він іде від чистого чорного (black) */}
         <div className="absolute inset-0 bg-linear-to-r from-black via-black/70 to-transparent" />
       </div>
 
@@ -28,7 +25,6 @@ export default function Home() {
             </span>
           </h1>
 
-          {/* Параграф: Робимо текст більш тривожним */}
           <p className="mt-6 text-lg text-gray-400 leading-relaxed italic">
             Enter the darkness. Join our exclusive circle to read forbidden
             chapters and face the horrors that lurk between the lines.
@@ -37,7 +33,7 @@ export default function Home() {
           <div className="mt-10">
             {/* Кнопка: Тепер червона, з ефектом пульсації або легкого світіння */}
             <Link
-              href="/sign-in"
+              href="/sign-up-page"
               className="inline-block bg-red-700 text-white px-8 py-4 rounded-sm font-serif font-bold text-lg hover:bg-red-600 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(153,27,27,0.4)]"
             >
               Enter the Void
