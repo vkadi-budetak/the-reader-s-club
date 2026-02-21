@@ -20,6 +20,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import { X } from "lucide-react";
+
 export function RegisterForm() {
   const form = useForm({
     defaultValues: {
@@ -36,6 +38,19 @@ export function RegisterForm() {
 
   return (
     <Card className="w-full max-w-md mx-auto bg-zinc-950 border-zinc-800 shadow-[0_0_50px_rgba(0,0,0,1)] rounded-sm">
+      <div className="absolute top-3 right-3">
+        <Link href="/">
+          <Button
+            variant="outline"
+            type="button"
+            size="icon"
+            className="group border-zinc-800 hover:border-red-900 bg-transparent h-8 w-8"
+          >
+            <X className="h-4 w-4 text-amber-50 transition-all duration-500 group-hover:rotate-180 group-hover:text-red-700 group-hover:scale-110" />
+          </Button>
+        </Link>
+      </div>
+
       <CardHeader className="space-y-1 text-center border-b border-zinc-900 mb-6">
         <CardTitle className="text-3xl font-serif font-bold text-white tracking-tighter uppercase">
           Join the Circle
