@@ -34,9 +34,7 @@ export default function OurHistory() {
             </div>
           </div>
 
-          {/* Секція з дивною картинкою та тінями */}
           <div className="relative group">
-            {/* Багатошарова тінь для ефекту глибини */}
             <div className="absolute -inset-4 bg-red-900/20 blur-2xl rounded-full opacity-50 group-hover:opacity-100 transition duration-1000"></div>
 
             <div
@@ -52,13 +50,11 @@ export default function OurHistory() {
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
-              {/* Накладання темряви поверх картинки */}
               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent"></div>
             </div>
           </div>
         </div>
 
-        {/* Секція Місія */}
         <div className="mt-20 border-y border-zinc-900 py-10 px-6 bg-zinc-950/50">
           <h2 className="text-center text-xl font-serif text-red-800 uppercase tracking-widest mb-4">
             Our Covenant
@@ -68,14 +64,12 @@ export default function OurHistory() {
             exclusive space where every scream shapes the next page.
           </p>
         </div>
-
-        {/* CTA внизу */}
         <div className="mt-20 text-center">
           <p className="text-gray-600 text-sm mb-6 uppercase tracking-tighter">
             Do you have the courage to proceed?
           </p>
           <Link
-            href="/sign-up"
+            href="/sign-up-page"
             className="inline-block bg-red-900/20 border border-red-900 text-red-100 px-10 py-3 rounded-sm hover:bg-red-900/40 transition-all duration-500 shadow-[0_0_15px_rgba(153,27,27,0.2)]"
           >
             Join the Club
