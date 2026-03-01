@@ -3,11 +3,11 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { X } from "lucide-react";
+import { signIn } from "next-auth/react";
 
 export function LoginForm() {
-  // Функція для логіну через Google (реалізуємо пізніше через Supabase)
   const handleGoogleLogin = () => {
-    console.log("Redirecting to Google...");
+    signIn("google");
   };
 
   return (

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { Providers } from "./providers/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +30,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          {/* Створюємо флекс-контейнер на всю висоту екрана */}
+          <div className="flex min-h-screen flex-col">
+            <Header />
+
+            {/* main з flex-grow "штовхає" футер донизу */}
+            <main className="flex-grow">{children}</main>
+
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );

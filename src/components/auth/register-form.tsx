@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/card";
 
 import { X } from "lucide-react";
+import { signIn } from "next-auth/react";
 
 export function RegisterForm() {
   const form = useForm({
@@ -36,9 +37,8 @@ export function RegisterForm() {
     console.log("Welcome to the circle:", values);
   }
 
-  // Функція для логіну через Google (реалізуємо пізніше через Supabase)
   const handleGoogleLogin = () => {
-    console.log("Redirecting to Google...");
+    signIn("google");
   };
 
   return (

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import SignInSignOut from "../sign-in-sign-out";
 
 export default function NavBar() {
   const pathname = usePathname();
@@ -32,12 +33,23 @@ export default function NavBar() {
       {/* Розділювач став темнішим */}
       <div className="h-4 w-px bg-zinc-800" />
 
+      {/* Кнопка Профілю */}
+      <Link
+        href="/profile-page"
+        className="text-sm font-serif font-bold bg-red-900 text-white px-5 py-2 rounded-sm hover:bg-red-700 transition-all shadow-[0_0_15px_rgba(153,27,27,0.2)] uppercase tracking-tighter"
+      >
+        Profile
+      </Link>
+
       <Link
         href="/sign-up-page"
         className="text-sm font-serif font-bold bg-red-900 text-white px-5 py-2 rounded-sm hover:bg-red-700 transition-all shadow-[0_0_15px_rgba(153,27,27,0.2)] uppercase tracking-tighter"
       >
         Join the Circle
       </Link>
+
+      {/* Компонент SignInSignOut */}
+      <SignInSignOut />
     </nav>
   );
 }
