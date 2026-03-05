@@ -37,8 +37,9 @@ export function RegisterForm() {
     console.log("Welcome to the circle:", values);
   }
 
+  // signIn("google");
   const handleGoogleLogin = () => {
-    signIn("google");
+    signIn("google", { callbackUrl: "/dashboard" });
   };
 
   return (
@@ -146,7 +147,7 @@ export function RegisterForm() {
           </div>
         </div>
 
-        {/* Кнопка Google */}
+        {/* Button Google */}
         <Button
           variant="outline"
           type="button"
