@@ -2,12 +2,10 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-300">
       <div className="max-w-3xl mx-auto px-6 py-16">
-        {/* Мінімалістичний заголовок без зайвого декору */}
         <h1 className="text-4xl font-serif font-bold mb-2 text-white tracking-tight">
           Privacy Policy
         </h1>
         <div className="h-1 w-12 bg-red-800 mb-8" />{" "}
-        {/* Маленька акцентна лінія */}
         <p className="text-sm text-gray-500 mb-12 font-mono uppercase tracking-widest">
           Last Updated // Feb 2026
         </p>

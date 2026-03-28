@@ -7,7 +7,6 @@ import SignInSignOut from "../sign-in-sign-out";
 export default function NavBar() {
   const pathname = usePathname();
 
-  // Функція для підсвічування активного посилання червоним
   const isActive = (path: string) => pathname === path;
 
   return (
@@ -20,7 +19,6 @@ export default function NavBar() {
       >
         Our Journey
       </Link>
-
       <Link
         href="/chapters"
         className={`text-sm font-serif tracking-wide transition-colors hover:text-red-600 ${
@@ -29,10 +27,25 @@ export default function NavBar() {
       >
         The Chapters
       </Link>
+      <Link
+        href="/dashboard"
+        className={`text-sm font-serif tracking-wide transition-colors hover:text-red-600 ${
+          isActive("/chapters") ? "text-red-700 font-bold" : "text-zinc-400"
+        }`}
+      >
+        My Library
+      </Link>
 
-      {/* Розділювач став темнішим */}
+      <Link
+        href="/admin"
+        className={`text-sm font-serif tracking-wide transition-colors hover:text-red-600 ${
+          isActive("/chapters") ? "text-red-700 font-bold" : "text-zinc-400"
+        }`}
+      >
+        Admin
+      </Link>
+
       <div className="h-4 w-px bg-zinc-800" />
-
       {/* Кнопка Профілю */}
       {/* <Link
         href="/profile-page"
@@ -47,7 +60,6 @@ export default function NavBar() {
       >
         Join the Circle
       </Link> */}
-
       {/* Компонент SignInSignOut */}
       <SignInSignOut />
     </nav>

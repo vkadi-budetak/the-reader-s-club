@@ -1,6 +1,5 @@
 export default function TermsOfService() {
   return (
-    // Змінюємо фон на чорний, текст на світлий через prose-invert
     <div className="min-h-screen bg-black">
       <div className="max-w-3xl mx-auto px-6 py-12 prose prose-invert prose-red">
         <h1 className="text-4xl font-serif font-bold mb-6 text-red-700 tracking-tighter">
