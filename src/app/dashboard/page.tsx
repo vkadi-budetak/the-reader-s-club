@@ -126,7 +126,7 @@ export default function Dashboard() {
         <div className="space-y-6">
           <div className="bg-zinc-950 p-8 rounded-sm border border-red-900/10 shadow-2xl sticky top-8">
             <div className="flex items-center justify-between mb-6 border-b border-zinc-900 pb-4">
-              <h3 className="text-xl font-serif font-bold text-white">
+              <h3 className="text-xl font-serif font-bold text-white uppercase tracking-tighter">
                 Membership
               </h3>
               <Ghost size={20} className="text-red-900 opacity-50" />
@@ -137,7 +137,7 @@ export default function Dashboard() {
                 <span className="text-zinc-500 uppercase text-[10px]">
                   Alias:
                 </span>
-                <span className="text-zinc-200">{session.user?.name}</span>
+                <span className="text-zinc-200 truncate max-w-[120px]">{session.user?.name}</span>
               </div>
 
               <div className="flex justify-between items-center">
@@ -167,16 +167,6 @@ export default function Dashboard() {
                     </span>
                   </div>
                   <span className="text-zinc-200">1 / 12</span>
-                </div>
-
-                <div className="flex justify-between">
-                  <div className="flex items-center gap-2">
-                    <MessageSquare size={14} className="text-zinc-600" />
-                    <span className="text-zinc-500 text-[10px] uppercase">
-                      Testimonies:
-                    </span>
-                  </div>
-                  <span className="text-zinc-200">5</span>
                 </div>
               </div>
 
