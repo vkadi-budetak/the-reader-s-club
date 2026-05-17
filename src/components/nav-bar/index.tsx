@@ -30,19 +30,10 @@ export default function NavBar() {
       <Link
         href="/dashboard"
         className={`text-sm font-serif tracking-wide transition-colors hover:text-red-600 ${
-          isActive("/chapters") ? "text-red-700 font-bold" : "text-zinc-400"
+          isActive("/dashboard") ? "text-red-700 font-bold" : "text-zinc-400"
         }`}
       >
         My Library
-      </Link>
-
-      <Link
-        href="/admin"
-        className={`text-sm font-serif tracking-wide transition-colors hover:text-red-600 ${
-          isActive("/chapters") ? "text-red-700 font-bold" : "text-zinc-400"
-        }`}
-      >
-        Admin
       </Link>
 
       <div className="h-4 w-px bg-zinc-800" />
