@@ -3,6 +3,7 @@ import { usersTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import crypto from "crypto";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -20,43 +21,52 @@ export const authOptions: NextAuthOptions = {
       if (account?.provider === "google") {
         if (!user.email) return false;
 
-        // Шукаємо, чи є вже такий юзер за email
-        const [existingUser] = await db
-          .select()
-          .from(usersTable)
-          .where(eq(usersTable.email, user.email))
-          .limit(1);
+        try {
+          // Шукаємо, чи є вже такий юзер за email
+          const [existingUser] = await db
+            .select()
+            .from(usersTable)
+            .where(eq(usersTable.email, user.email))
+            .limit(1);
 
-        // Якщо юзера немає — створюємо його, обов'язково передаючи ID!
-        if (!existingUser) {
-          await db.insert(usersTable).values({
-            id: user.id, // ID, яке прийшло від Google (або crypto.randomUUID())
-            email: user.email,
-            name: user.name || "Anonymous Witness",
-            image: user.image,
-            role: "user", // Відповідає дефолту у твоїй схемі
-          });
+          // Якщо юзера немає — створюємо його
+          if (!existingUser) {
+            await db.insert(usersTable).values({
+              id: crypto.randomUUID(), // Явно генеруємо UUID
+              email: user.email,
+              name: user.name || "Anonymous Witness",
+              password: "google-auth-account-" + crypto.randomBytes(4).toString('hex'), 
+              image: user.image,
+              role: "user",
+            });
+          }
+          return true;
+        } catch (error) {
+          console.error("Error saving google user:", error);
+          return true; // Дозволяємо вхід навіть якщо не зберегли, щоб не блокувати юзера
         }
       }
       return true;
     },
 
     async jwt({ token, user }) {
-      // При першому вході об'єкт 'user' існує. Беремо дані з бази або провайдера.
       if (user) {
         token.id = user.id;
         token.role = (user as any).role || "user";
       } else if (token.email) {
-        // Якщо це наступні запити, підстраховуємося і беремо актуальну роль з бази
-        const [dbUser] = await db
-          .select()
-          .from(usersTable)
-          .where(eq(usersTable.email, token.email))
-          .limit(1);
+        try {
+          const [dbUser] = await db
+            .select()
+            .from(usersTable)
+            .where(eq(usersTable.email, token.email))
+            .limit(1);
 
-        if (dbUser) {
-          token.id = dbUser.id;
-          token.role = dbUser.role;
+          if (dbUser) {
+            token.id = dbUser.id;
+            token.role = dbUser.role;
+          }
+        } catch (error) {
+          console.error("JWT callback error:", error);
         }
       }
       return token;

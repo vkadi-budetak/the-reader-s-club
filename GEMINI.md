@@ -23,10 +23,13 @@
 - [x] **UX Improvements:** Added informational hints to Login and Register forms regarding Google Auth priority (English version).
 - [x] **Navigation Fix:** Ensured automatic redirection to `/dashboard` (My Library) after successful Google login.
 - [x] **UI Cleanup:** Removed "Admin" link from the navigation bar.
+- [x] **Build Fix:** Resolved TypeScript error in `auth-options.ts` by using `crypto.randomUUID()` for IDs and providing a random password for Google users.
 
 ## Change Tracking (Git Sync)
 | Date       | Description | Changes | Commit |
 |------------|-------------|---------|--------|
+| 2026-05-17 | Robust Auth Fix | Used `crypto.randomUUID()` to satisfy Drizzle types and added error handling. | N/A |
+| 2026-05-17 | Auth Build Fix | Fixed missing `password` property in `db.insert` for Google Auth. | N/A |
 | 2026-05-17 | UI Cleanup | Removed "Admin" link from NavBar and fixed active state for My Library. | N/A |
 | 2026-05-17 | Auth Redirect Fix | Added `callbackUrl: "/dashboard"` to Google signIn calls in both forms. | N/A |
 | 2026-05-17 | Auth UI Hints | Added English hints to Login/Register forms to guide users towards Google Auth. | N/A |
