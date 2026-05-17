@@ -2,12 +2,20 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { X } from "lucide-react";
+import { X, AlertCircle } from "lucide-react";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 export function LoginForm() {
+  const [showHint, setShowHint] = useState(false);
+
   const handleGoogleLogin = () => {
-    signIn("google");
+    signIn("google", { callbackUrl: "/dashboard" });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowHint(true);
   };
 
   return (
@@ -34,7 +42,7 @@ export function LoginForm() {
         </p>
       </div>
 
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-2">
           <label className="text-xs font-mono text-zinc-500 uppercase tracking-widest text-left">
             Email Portal
@@ -60,6 +68,15 @@ export function LoginForm() {
             className="bg-black border border-zinc-800 p-3 text-white focus:outline-none focus:border-red-900 transition-colors rounded-sm"
           />
         </div>
+
+        {showHint && (
+          <div className="flex items-center gap-2 p-3 bg-red-900/10 border border-red-900/30 rounded-sm animate-in fade-in slide-in-from-top-1 duration-300">
+            <AlertCircle className="h-4 w-4 text-red-600 shrink-0" />
+            <p className="text-[11px] font-mono text-red-500 leading-tight">
+              This feature is coming in the next update. Please sign in with Google!
+            </p>
+          </div>
+        )}
 
         <Button
           type="submit"

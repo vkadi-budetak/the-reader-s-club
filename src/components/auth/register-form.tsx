@@ -20,10 +20,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { X } from "lucide-react";
+import { X, AlertCircle } from "lucide-react";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 export function RegisterForm() {
+  const [showHint, setShowHint] = useState(false);
   const form = useForm({
     defaultValues: {
       name: "",
@@ -35,6 +37,7 @@ export function RegisterForm() {
   // Функція для майбутнього бекенду (Server Actions)
   async function onSubmit(values: unknown) {
     console.log("Welcome to the circle:", values);
+    setShowHint(true);
   }
 
   // signIn("google");
@@ -126,6 +129,17 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
+
+            {showHint && (
+              <div className="flex items-center gap-2 p-3 bg-red-900/10 border border-red-900/30 rounded-sm animate-in fade-in slide-in-from-top-1 duration-300">
+                <AlertCircle className="h-4 w-4 text-red-600 shrink-0" />
+                <p className="text-[11px] font-mono text-red-500 leading-tight">
+                  This feature is coming in the next update. Please sign in with
+                  Google!
+                </p>
+              </div>
+            )}
+
             <Button
               type="submit"
               className="w-full bg-red-900 hover:bg-red-700 text-white font-serif font-bold py-6 rounded-sm transition-all duration-500 uppercase tracking-widest shadow-[0_0_20px_rgba(153,27,27,0.2)]"
