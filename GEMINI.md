@@ -24,10 +24,16 @@
 - [x] **Navigation Fix:** Ensured automatic redirection to `/dashboard` (My Library) after successful Google login.
 - [x] **UI Cleanup:** Removed "Admin" link from the navigation bar.
 - [x] **Build Fix:** Resolved TypeScript error in `auth-options.ts` by using `crypto.randomUUID()` for IDs and providing a random password for Google users.
+- [ ] **Chapters Functionality:** Starting work on dynamic chapters and content rendering.
+- [x] **Chapters Landing Page:** Implemented a visually rich "Sacred Archive" page at `/chapters` to showcase books and encourage engagement.
+- [x] **Dynamic UX:** Added session-based buttons on Chapters page (Join/Sign In for guests, Browse Library for users).
 
 ## Change Tracking (Git Sync)
 | Date       | Description | Changes | Commit |
 |------------|-------------|---------|--------|
+| 2026-05-17 | Dynamic Chapters UI | Integrated `useSession` to Chapters page for personalized CTAs. | N/A |
+| 2026-05-17 | Chapters UI | Created atmospheric `/chapters` landing page with featured volumes and CTAs. | N/A |
+| 2026-05-17 | New Branch: Chapters | Created `the-chapters` branch to work on book content and navigation. | N/A |
 | 2026-05-17 | Robust Auth Fix | Used `crypto.randomUUID()` to satisfy Drizzle types and added error handling. | N/A |
 | 2026-05-17 | Auth Build Fix | Fixed missing `password` property in `db.insert` for Google Auth. | N/A |
 | 2026-05-17 | UI Cleanup | Removed "Admin" link from NavBar and fixed active state for My Library. | N/A |
