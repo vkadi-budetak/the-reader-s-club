@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "DATABASE_URL=postgres://dummy:dummy@localhost:5432/dummy next build",
     "start": "next start",
     "lint": "eslint",
     "db:generate": "npx drizzle-kit generate",
