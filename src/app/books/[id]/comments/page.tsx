@@ -81,7 +81,7 @@ export default async function CommentsPage({ params }: PageProps) {
 
           {comments && comments.length > 0 ? (
             <div className="space-y-6">
-              {comments.map((comment: any) => (
+              {comments.map((comment: { id: number; content: string; createdAt: Date; user: { name: string; image: string | null } }) => (
                 <div key={comment.id} className="bg-zinc-950/50 border border-zinc-900 p-6 rounded-sm hover:border-zinc-800 transition-all group">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">

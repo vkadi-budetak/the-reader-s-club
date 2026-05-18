@@ -154,30 +154,7 @@ export default function BookDetails({ params }: PageProps) {
             </div>
           </section>
 
-          {/* Table of Contents (Locked) */}
-          <section className="space-y-8 pb-20">
-            <h2 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.4em] border-b border-zinc-900 pb-2">
-              Archives Table
-            </h2>
-            <div className="grid gap-4 opacity-50">
-              {[1, 2, 3, 4, 5].map((num) => (
-                <div
-                  key={num}
-                  className="group bg-black/40 border border-zinc-900 p-6 rounded-sm flex items-center justify-between cursor-not-allowed"
-                >
-                  <div className="flex items-center gap-6">
-                    <span className="text-zinc-800 font-mono text-xl font-bold">
-                      0{num}
-                    </span>
-                    <h4 className="text-zinc-600 text-xl font-serif">
-                      Locked Testimony #{num}
-                    </h4>
-                  </div>
-                  <Lock size={20} className="text-zinc-900" />
-                </div>
-              ))}
-            </div>
-          </section>
+          {/* Discussion section is expected to be below this or handled elsewhere */}
         </div>
       </div>
     </div>

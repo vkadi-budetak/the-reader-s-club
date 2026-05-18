@@ -1,6 +1,6 @@
 {
-  "id": "f03fc569-9177-402c-ae1b-7b6f909576d4",
-  "prevId": "5de2e17f-f8cb-42bb-a97f-04a2a30a89a1",
+  "id": "c81d8144-b2f4-4728-ac95-7aa3253c486e",
+  "prevId": "f03fc569-9177-402c-ae1b-7b6f909576d4",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -14,15 +14,15 @@
           "primaryKey": true,
           "notNull": true
         },
-        "title": {
-          "name": "title",
+        "slug": {
+          "name": "slug",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
         },
-        "slug": {
-          "name": "slug",
-          "type": "varchar(255)",
+        "title": {
+          "name": "title",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
@@ -32,31 +32,11 @@
           "primaryKey": false,
           "notNull": false
         },
-        "cover_image": {
-          "name": "cover_image",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "author": {
-          "name": "author",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'The Witness'"
-        },
-        "is_published": {
-          "name": "is_published",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false,
-          "default": false
-        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "now()"
         }
       },
@@ -76,68 +56,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.chapter_likes": {
-      "name": "chapter_likes",
-      "schema": "",
-      "columns": {
-        "user_id": {
-          "name": "user_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "chapter_id": {
-          "name": "chapter_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "chapter_likes_user_id_users_id_fk": {
-          "name": "chapter_likes_user_id_users_id_fk",
-          "tableFrom": "chapter_likes",
-          "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "chapter_likes_chapter_id_chapters_id_fk": {
-          "name": "chapter_likes_chapter_id_chapters_id_fk",
-          "tableFrom": "chapter_likes",
-          "tableTo": "chapters",
-          "columnsFrom": [
-            "chapter_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {
-        "chapter_likes_user_id_chapter_id_pk": {
-          "name": "chapter_likes_user_id_chapter_id_pk",
-          "columns": [
-            "user_id",
-            "chapter_id"
-          ]
-        }
-      },
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.chapters": {
-      "name": "chapters",
+    "public.comments": {
+      "name": "comments",
       "schema": "",
       "columns": {
         "id": {
@@ -146,23 +66,17 @@
           "primaryKey": true,
           "notNull": true
         },
-        "book_id": {
-          "name": "book_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "title": {
-          "name": "title",
+        "book_slug": {
+          "name": "book_slug",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
         },
-        "intro": {
-          "name": "intro",
-          "type": "text",
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "content": {
           "name": "content",
@@ -170,35 +84,22 @@
           "primaryKey": false,
           "notNull": true
         },
-        "chapter_number": {
-          "name": "chapter_number",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "is_locked": {
-          "name": "is_locked",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false,
-          "default": false
-        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "now()"
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "chapters_book_id_books_id_fk": {
-          "name": "chapters_book_id_books_id_fk",
-          "tableFrom": "chapters",
-          "tableTo": "books",
+        "comments_user_id_users_id_fk": {
+          "name": "comments_user_id_users_id_fk",
+          "tableFrom": "comments",
+          "tableTo": "users",
           "columnsFrom": [
-            "book_id"
+            "user_id"
           ],
           "columnsTo": [
             "id"
@@ -213,8 +114,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.comments": {
-      "name": "comments",
+    "public.favorites": {
+      "name": "favorites",
       "schema": "",
       "columns": {
         "id": {
@@ -223,21 +124,15 @@
           "primaryKey": true,
           "notNull": true
         },
-        "chapter_id": {
-          "name": "chapter_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
         "user_id": {
           "name": "user_id",
-          "type": "text",
+          "type": "uuid",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
-        "content": {
-          "name": "content",
-          "type": "text",
+        "book_slug": {
+          "name": "book_slug",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
         },
@@ -245,28 +140,15 @@
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "now()"
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "comments_chapter_id_chapters_id_fk": {
-          "name": "comments_chapter_id_chapters_id_fk",
-          "tableFrom": "comments",
-          "tableTo": "chapters",
-          "columnsFrom": [
-            "chapter_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "comments_user_id_users_id_fk": {
-          "name": "comments_user_id_users_id_fk",
-          "tableFrom": "comments",
+        "favorites_user_id_users_id_fk": {
+          "name": "favorites_user_id_users_id_fk",
+          "tableFrom": "favorites",
           "tableTo": "users",
           "columnsFrom": [
             "user_id"
@@ -290,27 +172,28 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "uuid",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "default": "gen_random_uuid()"
         },
         "name": {
           "name": "name",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "email": {
-          "name": "email",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "emailVerified": {
-          "name": "emailVerified",
-          "type": "timestamp",
+        "email": {
+          "name": "email",
+          "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
         },
         "image": {
           "name": "image",
@@ -318,24 +201,18 @@
           "primaryKey": false,
           "notNull": false
         },
-        "password": {
-          "name": "password",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
         "role": {
           "name": "role",
-          "type": "varchar(20)",
+          "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'user'"
         },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "now()"
         }
       },

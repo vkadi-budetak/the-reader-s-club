@@ -28,13 +28,28 @@ export const commentsTable = pgTable("comments", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const favoritesTable = pgTable("favorites", {
+  id: serial("id").primaryKey(),
+  userId: uuid("user_id").notNull().references(() => usersTable.id, { onDelete: "cascade" }),
+  bookSlug: varchar("book_slug", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const usersRelations = relations(usersTable, ({ many }) => ({
   comments: many(commentsTable),
+  favorites: many(favoritesTable),
 }));
 
 export const commentsRelations = relations(commentsTable, ({ one }) => ({
   user: one(usersTable, {
     fields: [commentsTable.userId],
+    references: [usersTable.id],
+  }),
+}));
+
+export const favoritesRelations = relations(favoritesTable, ({ one }) => ({
+  user: one(usersTable, {
+    fields: [favoritesTable.userId],
     references: [usersTable.id],
   }),
 }));
