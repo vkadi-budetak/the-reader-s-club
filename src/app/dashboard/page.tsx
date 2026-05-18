@@ -36,7 +36,7 @@ export default async function Dashboard() {
     .from(booksTable)
     .leftJoin(commentsTable, eq(booksTable.slug, commentsTable.bookSlug))
     .groupBy(booksTable.id)
-    .execute();
+    .execute() as { id: number; title: string; slug: string; description: string | null; commentCount: number }[];
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pb-12 text-gray-300 font-sans">
