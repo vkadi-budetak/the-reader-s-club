@@ -17,6 +17,8 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+export const dynamic = "force-dynamic";
+
 export default function BookDetails({ params }: PageProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSnippet, setActiveSnippet] = useState(0);
