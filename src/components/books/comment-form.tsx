@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { addComment } from "@/lib/actions/comments";
+import { addCommentAction } from "@/lib/actions/comments";
 import { Button } from "@/components/ui/button";
 import { Send, Loader2 } from "lucide-react";
 
-export function CommentForm({ bookSlug }: { bookSlug: string }) {
+export function CommentForm({ bookSlug, userId }: { bookSlug: string; userId: string }) {
   const [content, setContent] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +17,7 @@ export function CommentForm({ bookSlug }: { bookSlug: string }) {
     setIsSubmitting(true);
     setError(null);
 
-    const result = await addComment(bookSlug, content);
+    const result = await addCommentAction(bookSlug, content, userId);
 
     if (result.success) {
       setContent("");

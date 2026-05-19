@@ -5,17 +5,12 @@ import { commentsTable, usersTable } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
-export async function addCommentAction(formData: FormData) {
-  const content = formData.get("content") as string;
-  const bookSlug = formData.get("bookSlug") as string;
-  const userId = formData.get("userId") as string;
-
+export async function addCommentAction(bookSlug: string, content: string, userId: string) {
   if (!content || !bookSlug || !userId) {
     return { success: false, error: "Missing required fields" };
   }
 
   try {
-    // Вставляємо коментар
     await db.insert(commentsTable).values({
       bookSlug,
       userId,
@@ -32,7 +27,6 @@ export async function addCommentAction(formData: FormData) {
 
 export async function getCommentsAction(bookSlug: string) {
   try {
-    // Використовуємо стандартний select замість query для кращої типізації
     const comments = await db
       .select({
         id: commentsTable.id,
@@ -51,12 +45,7 @@ export async function getCommentsAction(bookSlug: string) {
 
     return { 
       success: true, 
-      data: comments as { 
-        id: number; 
-        content: string; 
-        createdAt: Date; 
-        user: { name: string; image: string | null } 
-      }[] 
+      data: comments 
     };
   } catch (error) {
     console.error("Error fetching comments:", error);

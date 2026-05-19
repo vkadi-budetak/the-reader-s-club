@@ -1,4 +1,4 @@
-import { getComments } from "@/lib/actions/comments";
+import { getCommentsAction } from "@/lib/actions/comments";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth-options";
 import Link from "next/link";
@@ -12,7 +12,7 @@ interface PageProps {
 export default async function CommentsPage({ params }: PageProps) {
   const { id: bookId } = await params;
   const session = await getServerSession(authOptions);
-  const result = await getComments(bookId);
+  const result = await getCommentsAction(bookId);
   
   const comments = result.success ? result.data : [];
 
@@ -45,7 +45,7 @@ export default async function CommentsPage({ params }: PageProps) {
 
         {/* Form Section */}
         <section className="mb-16">
-          {session ? (
+          {session && session.user?.id ? (
             <div className="bg-zinc-950 p-8 border border-zinc-900 rounded-sm shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-4 opacity-5">
                 <Ghost size={60} />
@@ -54,7 +54,7 @@ export default async function CommentsPage({ params }: PageProps) {
                 <span className="w-1.5 h-1.5 bg-red-700 rotate-45" />
                 Leave your mark
               </h2>
-              <CommentForm bookSlug={bookId} />
+              <CommentForm bookSlug={bookId} userId={session.user.id} />
             </div>
           ) : (
             <div className="bg-red-950/5 border border-red-900/20 p-8 rounded-sm text-center">

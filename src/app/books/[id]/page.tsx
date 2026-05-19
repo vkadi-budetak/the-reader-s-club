@@ -156,7 +156,29 @@ export default function BookDetails({ params }: PageProps) {
             </div>
           </section>
 
-          {/* Discussion section is expected to be below this or handled elsewhere */}
+          {/* Discussion Entry Point */}
+          <section className="mt-12">
+            <Link href={`/books/${bookId}/comments`}>
+              <div className="group border border-zinc-900 bg-zinc-950/40 p-8 hover:border-red-900/50 transition-all duration-500 cursor-pointer overflow-hidden relative">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <Sparkles size={100} />
+                </div>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-serif font-bold text-white uppercase tracking-tight group-hover:text-red-700 transition-colors">
+                      The Forbidden <span className="text-red-900">Testimonies</span>
+                    </h3>
+                    <p className="text-zinc-500 text-xs italic font-serif">
+                      Read what others are whispering about this volume in the shadows.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-red-900 font-mono text-[10px] uppercase tracking-[0.2em]">
+                    Enter the Chamber <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </section>
         </div>
       </div>
     </div>
