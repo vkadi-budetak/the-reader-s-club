@@ -22,11 +22,20 @@ import { Input } from "@/components/ui/input";
 import { Plus, Loader2 } from "lucide-react";
 import { addBook } from "@/lib/actions/books";
 
+interface BookFormValues {
+  title: string;
+  slug: string;
+  subtitle: string;
+  author: string;
+  description: string;
+  coverImage: string;
+}
+
 export function AddBookDialog() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const form = useForm({
+  const form = useForm<BookFormValues>({
     defaultValues: {
       title: "",
       slug: "",
@@ -37,7 +46,7 @@ export function AddBookDialog() {
     },
   });
 
-  async function onSubmit(values: any) {
+  async function onSubmit(values: BookFormValues) {
     setLoading(true);
     const result = await addBook(values);
     setLoading(false);

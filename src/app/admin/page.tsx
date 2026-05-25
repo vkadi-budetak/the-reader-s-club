@@ -11,6 +11,14 @@ import { DeleteBookButton } from "@/components/admin/delete-book-button";
 
 export const dynamic = "force-dynamic";
 
+interface Book {
+  id: number;
+  slug: string;
+  title: string;
+  description: string | null;
+  createdAt: Date;
+}
+
 export default async function AdminDashboard() {
   const session = await getServerSession(authOptions);
 
@@ -35,7 +43,8 @@ export default async function AdminDashboard() {
     );
   }
 
-  const books = await db.select().from(booksTable);
+  // Отримуємо реальні дані з явною типізацією
+  const books = await db.select().from(booksTable) as Book[];
   const [usersCountResult] = await db.select({ value: count() }).from(usersTable);
   const [commentsCountResult] = await db.select({ value: count() }).from(commentsTable);
 
@@ -69,7 +78,7 @@ export default async function AdminDashboard() {
                 <p className="text-zinc-600 font-serif italic text-sm">The archive is currently empty.</p>
               </div>
             ) : (
-              books.map((book) => (
+              books.map((book: Book) => (
                 <div key={book.id} className="grid grid-cols-12 gap-4 p-6 items-center hover:bg-zinc-900/20 border-b border-zinc-900 last:border-0 transition-colors">
                   <div className="col-span-1 font-mono text-zinc-700 text-xs">#{book.id}</div>
                   <div className="col-span-4 space-y-1">

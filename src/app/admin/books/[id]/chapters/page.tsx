@@ -4,8 +4,7 @@ import { db } from "@/db";
 import { booksTable, chaptersTable } from "@/db/schema";
 import { eq, asc } from "drizzle-orm";
 import { notFound, redirect } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, Plus, Scroll, Trash2 } from "lucide-react";
+import { ChevronLeft, Scroll } from "lucide-react";
 import Link from "next/link";
 import { AddChapterForm } from "./add-chapter-form";
 import { DeleteChapterButton } from "./delete-chapter-button";
@@ -14,6 +13,16 @@ export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+// Визначаємо тип для розділу
+interface Chapter {
+  id: number;
+  bookId: number;
+  title: string;
+  content: string;
+  order: number;
+  createdAt: Date;
 }
 
 export default async function ManageChapters({ params }: PageProps) {
@@ -36,12 +45,12 @@ export default async function ManageChapters({ params }: PageProps) {
     notFound();
   }
 
-  // Отримуємо розділи
+  // Отримуємо розділи з явною типізацією
   const chapters = await db
     .select()
     .from(chaptersTable)
     .where(eq(chaptersTable.bookId, bookId))
-    .orderBy(asc(chaptersTable.order));
+    .orderBy(asc(chaptersTable.order)) as Chapter[];
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pb-20 pt-10 text-gray-300">
@@ -76,7 +85,7 @@ export default async function ManageChapters({ params }: PageProps) {
               </div>
             ) : (
               <div className="space-y-4">
-                {chapters.map((chapter) => (
+                {chapters.map((chapter: Chapter) => (
                   <div key={chapter.id} className="bg-zinc-950 border border-zinc-900 p-6 rounded-sm hover:border-zinc-800 transition-all group">
                     <div className="flex justify-between items-start mb-4">
                       <div className="space-y-1">
