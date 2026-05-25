@@ -22,8 +22,8 @@ export function DynamicSidebar() {
   useEffect(() => {
     async function fetchBooks() {
       const result = await getBooksAction();
-      if (result.success && result.data) {
-        setBooks(result.data as BookType[]);
+      if (result.success && result.books) {
+        setBooks(result.books as BookType[]);
       }
       setIsLoading(false);
     }
