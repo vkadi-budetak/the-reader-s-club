@@ -7,12 +7,19 @@ import { Book, ChevronRight, Lock, Unlock } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
+interface Book {
+  id: number;
+  title: string;
+  slug: string;
+  description: string | null;
+}
+
 export default async function ChaptersPage() {
   const session = await getServerSession(authOptions);
-  const books = await db.select().from(booksTable);
+  const books = await db.select().from(booksTable) as Book[];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pb-20 pt-10">
+    <div className="min-h-screen bg-[#0a0a0a] pb-20 pt-10 text-gray-300">
       <div className="container mx-auto px-6">
         {/* Header Section */}
         <div className="text-center mb-16 space-y-4">
@@ -28,7 +35,7 @@ export default async function ChaptersPage() {
 
         {/* Books Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {books.map((book) => (
+          {books.map((book: Book) => (
             <div 
               key={book.id}
               className="group relative bg-zinc-950 border border-zinc-900 p-8 rounded-sm hover:border-red-900/50 transition-all duration-500 flex flex-col h-full"
@@ -52,7 +59,7 @@ export default async function ChaptersPage() {
                 </h2>
                 
                 <p className="text-zinc-500 text-sm font-serif italic leading-relaxed mb-8 flex-grow">
-                  &quot;{book.description}&quot;
+                  &quot;{book.description || "No description provided."}&quot;
                 </p>
 
                 <div className="pt-6 border-t border-zinc-900">
