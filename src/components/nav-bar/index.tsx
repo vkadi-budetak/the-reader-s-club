@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SignInSignOut from "../sign-in-sign-out";
+import { useSession } from "next-auth/react";
 
 export default function NavBar() {
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   const isActive = (path: string) => pathname === path;
 
@@ -35,6 +37,18 @@ export default function NavBar() {
       >
         My Library
       </Link>
+
+      {/* Показуємо Admin тільки якщо роль admin */}
+      {session?.user?.role === "admin" && (
+        <Link
+          href="/admin"
+          className={`text-sm font-serif tracking-wide transition-colors hover:text-red-600 ${
+            isActive("/admin") ? "text-red-700 font-bold" : "text-zinc-400"
+          }`}
+        >
+          Admin
+        </Link>
+      )}
 
       <div className="h-4 w-px bg-zinc-800" />
       {/* Кнопка Профілю */}

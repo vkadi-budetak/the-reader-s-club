@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import {
   ChevronLeft,
-  Lock,
   Library,
   ChevronDown,
   Sparkles,
@@ -10,10 +9,10 @@ import {
 } from "lucide-react";
 import { DynamicSidebar } from "@/components/dynamic-sidebar";
 import { db } from "@/db";
-import { booksTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { booksTable, chaptersTable } from "@/db/schema";
+import { eq, asc } from "drizzle-orm";
 import { notFound } from "next/navigation";
-import { BookViewer } from "./book-viewer"; // Створимо окремий клієнтський компонент для плеєра
+import { BookViewer } from "./book-viewer";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -24,7 +23,7 @@ export const dynamic = "force-dynamic";
 export default async function BookDetails({ params }: PageProps) {
   const { id: bookSlug } = await params;
 
-  // Отримуємо дані книги з бази
+  // Отримуємо дані книги
   const [book] = await db
     .select()
     .from(booksTable)
@@ -34,6 +33,13 @@ export default async function BookDetails({ params }: PageProps) {
   if (!book) {
     notFound();
   }
+
+  // Отримуємо реальні розділи для цієї книги
+  const chapters = await db
+    .select()
+    .from(chaptersTable)
+    .where(eq(chaptersTable.bookId, book.id))
+    .orderBy(asc(chaptersTable.order));
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-300 pb-20 pt-24">
@@ -46,7 +52,6 @@ export default async function BookDetails({ params }: PageProps) {
           <ChevronLeft size={14} /> Back to Library
         </Link>
 
-        {/* Explore Archive Dropdown - ми можемо залишити його статичним або додати клієнтську логіку */}
         <div className="relative group">
           <button
             className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest border border-zinc-900 text-zinc-500 px-4 py-2 transition-all duration-300 group-hover:border-red-900 group-hover:text-white group-hover:bg-red-900/5"
@@ -84,8 +89,8 @@ export default async function BookDetails({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Interactive Snippets Section - виносимо в Client Component */}
-          <BookViewer />
+          {/* Плеєр фрагментів з реальними даними */}
+          <BookViewer initialChapters={chapters} />
 
           {/* Discussion Entry Point */}
           <section className="mt-12">

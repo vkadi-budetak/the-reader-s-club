@@ -1,28 +1,35 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Lock } from "lucide-react";
+import { Sparkles, Lock, Scroll } from "lucide-react";
 
-export function BookViewer() {
+interface Chapter {
+  id: number;
+  title: string;
+  content: string;
+  order: number;
+}
+
+interface BookViewerProps {
+  initialChapters: Chapter[];
+}
+
+export function BookViewer({ initialChapters }: BookViewerProps) {
   const [activeSnippet, setActiveSnippet] = useState(0);
 
-  const snippets = [
-    {
-      title: "The Midnight Retainer",
-      text: "The engine of the 1981 Lincoln Town Car hummed like a dying beast. My new client didn't have a name, only a suitcase that smelled of ozone and wet earth. 'They're coming for the soul of the city, Counselor,' he whispered. I didn't ask who 'they' were. In this car, questions are more dangerous than...",
-      chapter: "Chapter 01"
-    },
-    {
-      title: "The Lincoln’s Shadow",
-      text: "I noticed it in the rearview mirror first. A shape that didn't belong to the backseat. It moved when the streetlights flickered out. Most lawyers fear the bar association. I fear the thing that sits behind me when I cross the county line at 3 AM. It doesn't want a legal defense. It wants...",
-      chapter: "Chapter 02"
-    },
-    {
-      title: "The Verdict of Shadows",
-      text: "The courtroom was empty, yet the benches creaked under the weight of invisible witnesses. The judge had no face, only a void beneath his hood. 'How do you plead for the sins of a man who no longer exists?' he asked. I looked at my hands. They were fading into the grey mist of the court...",
-      chapter: "Chapter 05"
-    }
-  ];
+  if (initialChapters.length === 0) {
+    return (
+      <section className="bg-zinc-950 p-16 border border-zinc-900 rounded-sm text-center space-y-6">
+        <Scroll className="h-16 w-16 text-zinc-800 mx-auto opacity-20" />
+        <div className="space-y-2">
+          <h3 className="text-xl font-serif font-bold text-zinc-500 uppercase tracking-widest">Archive Sealed</h3>
+          <p className="text-zinc-600 font-serif italic text-sm max-w-xs mx-auto">
+            The fragments of this volume have not yet been transcribed by the Scribes.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="space-y-8 bg-zinc-950 p-8 border border-zinc-900 rounded-sm">
@@ -36,9 +43,9 @@ export function BookViewer() {
       </div>
 
       <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide">
-        {snippets.map((s, i) => (
+        {initialChapters.map((s, i) => (
           <button
-            key={i}
+            key={s.id}
             onClick={() => setActiveSnippet(i)}
             className={`px-4 py-2 text-[9px] font-mono uppercase tracking-widest border transition-all shrink-0 ${
               activeSnippet === i 
@@ -46,17 +53,17 @@ export function BookViewer() {
                 : "border-zinc-800 text-zinc-600 hover:border-zinc-700"
             }`}
           >
-            Fragment {i + 1}
+            Fragment {s.order}
           </button>
         ))}
       </div>
 
       <div className="min-h-[160px] animate-in fade-in duration-700">
         <h4 className="text-white font-serif italic text-xl mb-4 text-red-700/80">
-          &ldquo;{snippets[activeSnippet].title}&rdquo;
+          &ldquo;{initialChapters[activeSnippet].title}&rdquo;
         </h4>
-        <p className="text-gray-400 font-serif leading-relaxed text-xl italic">
-          &ldquo;{snippets[activeSnippet].text}&rdquo;
+        <p className="text-gray-400 font-serif leading-relaxed text-xl italic whitespace-pre-wrap">
+          &ldquo;{initialChapters[activeSnippet].content}&rdquo;
         </p>
       </div>
 

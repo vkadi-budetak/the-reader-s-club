@@ -1,4 +1,4 @@
-import { pgTable, text, uuid, timestamp, serial, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, uuid, timestamp, serial, varchar, integer } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 export const usersTable = pgTable("users", {
@@ -17,6 +17,15 @@ export const booksTable = pgTable("books", {
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   title: text("title").notNull(),
   description: text("description"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const chaptersTable = pgTable("chapters", {
+  id: serial("id").primaryKey(),
+  bookId: integer("book_id").notNull().references(() => booksTable.id, { onDelete: "cascade" }),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  order: integer("order").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
