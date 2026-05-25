@@ -16,7 +16,7 @@ const plans = [
   },
   {
     name: "Acolyte",
-    price: "$6.66",
+    price: "$9.99",
     description: "For those who seek deeper truths.",
     features: [
       "Access to 'Echoes of the Void'",
@@ -29,7 +29,7 @@ const plans = [
   },
   {
     name: "Grandmaster",
-    price: "$13.13",
+    price: "$29.99",
     description: "Master of the forbidden archive.",
     features: [
       "All Acolyte features",

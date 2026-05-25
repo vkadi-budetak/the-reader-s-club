@@ -43,6 +43,7 @@
 - [x] **Turbopack Compatibility:** Fixed build-time issues and synchronized server actions for better development experience.
 - [x] **Membership Interaction:** Implemented `MembershipCard` with interactive hints for account settings.
 - [x] **Sponsorship System:** Added a dedicated `/sponsor` page with a multi-step simulated Stripe payment flow for portfolio demonstration.
+- [x] **Dynamic UX:** Updated Our History page with session-aware CTA button.
 
 ## Change Tracking (Git Sync)
 | Date       | Description | Changes | Commit |

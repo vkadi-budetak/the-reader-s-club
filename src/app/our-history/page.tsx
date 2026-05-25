@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth/auth-options";
 
-export default function OurHistory() {
+export default async function OurHistory() {
+  const session = await getServerSession(authOptions);
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-300">
       <section className="max-w-4xl mx-auto px-6 py-16">
@@ -11,6 +15,7 @@ export default function OurHistory() {
         >
           ← Back to home
         </Link>
+        {/* ... (існуючий код контенту) */}
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
@@ -65,13 +70,15 @@ export default function OurHistory() {
         </div>
         <div className="mt-20 text-center">
           <p className="text-gray-600 text-sm mb-6 uppercase tracking-tighter">
-            Do you have the courage to proceed?
+            {session
+              ? "Your presence is noted. Continue your journey?"
+              : "Do you have the courage to proceed?"}
           </p>
           <Link
-            href="/sign-up-page"
+            href={session ? "/dashboard" : "/sign-up-page"}
             className="inline-block bg-red-900/20 border border-red-900 text-red-100 px-10 py-3 rounded-sm hover:bg-red-900/40 transition-all duration-500 shadow-[0_0_15px_rgba(153,27,27,0.2)]"
           >
-            Join the Club
+            {session ? "Explore My Library" : "Join the Club"}
           </Link>
         </div>
       </section>
