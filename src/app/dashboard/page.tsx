@@ -4,9 +4,6 @@ import {
   Lock,
   MessageSquare,
   BookOpen,
-  Scroll,
-  Ghost,
-  Zap,
 } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth-options";
@@ -14,8 +11,10 @@ import { redirect } from "next/navigation";
 import { db } from "@/db";
 import { booksTable, commentsTable } from "@/db/schema";
 import { sql, eq } from "drizzle-orm";
+import { MembershipCard } from "@/components/dashboard/membership-card";
 
 export const dynamic = "force-dynamic";
+// ... (решта коду залишається без змін до блоку правої колонки)
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -136,75 +135,7 @@ export default async function Dashboard() {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-zinc-950 p-8 rounded-sm border border-red-900/10 shadow-2xl sticky top-8">
-            <div className="flex items-center justify-between mb-6 border-b border-zinc-900 pb-4">
-              <h3 className="text-xl font-serif font-bold text-white uppercase tracking-tighter">
-                Membership
-              </h3>
-              <Ghost size={20} className="text-red-900 opacity-50" />
-            </div>
-
-            <div className="space-y-6 text-sm font-mono">
-              <div className="flex justify-between items-center">
-                <span className="text-zinc-500 uppercase text-[10px]">
-                  Alias:
-                </span>
-                <span className="text-zinc-200 truncate max-w-[120px]">{session.user?.name}</span>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <span className="text-zinc-500 uppercase text-[10px]">
-                  Status:
-                </span>
-                <span className="text-red-600 font-bold tracking-tighter">
-                  ACTIVE WITNESS
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <span className="text-zinc-500 uppercase text-[10px]">
-                  Rank:
-                </span>
-                <span className="text-zinc-400 flex items-center gap-1">
-                  Seeker <Zap size={12} className="text-yellow-600" />
-                </span>
-              </div>
-
-              <div className="pt-4 border-t border-zinc-900 space-y-4">
-                <div className="flex justify-between">
-                  <div className="flex items-center gap-2">
-                    <Scroll size={14} className="text-zinc-600" />
-                    <span className="text-zinc-500 text-[10px] uppercase">
-                      Unlocked:
-                    </span>
-                  </div>
-                  <span className="text-zinc-200">{books.length} / 12</span>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex justify-between text-[9px] uppercase text-zinc-600">
-                  <span>Knowledge Level</span>
-                  <span>{Math.round((books.length / 12) * 100)}%</span>
-                </div>
-                <div className="w-full bg-zinc-900 h-1 rounded-full overflow-hidden">
-                  <div 
-                    className="bg-red-900 h-full transition-all duration-1000" 
-                    style={{ width: `${(books.length / 12) * 100}%` }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-10 space-y-3">
-              <button className="w-full py-3 bg-red-900 text-white rounded-sm font-serif text-xs font-bold hover:bg-red-800 transition-all uppercase tracking-widest shadow-lg cursor-pointer">
-                Account Settings
-              </button>
-              <button className="w-full py-3 bg-transparent border border-zinc-800 text-zinc-500 rounded-sm font-serif text-xs hover:border-red-900 hover:text-red-700 transition-all uppercase tracking-widest cursor-pointer">
-                Become a Sponsor
-              </button>
-            </div>
-          </div>
+          <MembershipCard session={session} bookCount={books.length} />
         </div>
       </div>
     </div>

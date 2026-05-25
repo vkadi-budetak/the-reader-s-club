@@ -38,11 +38,20 @@
 - [x] **Simplified Structure:** Removed separate chapters landing and reader pages. Integrated story snippets directly into the book details page for better immersion.
 - [ ] **Library Search:** Implement book search and filtering directly in the Dashboard (My Library).
 - [x] **Database Stability:** Switched to `postgres.js` driver to prevent `fetch failed` errors during server-side session checks.
+- [x] **Build Optimization:** Forced dynamic rendering for DB-dependent routes to ensure fresh data and stable builds.
+- [x] **Type Safety:** Resolved implicit `any` errors across dashboard and comment actions.
+- [x] **Turbopack Compatibility:** Fixed build-time issues and synchronized server actions for better development experience.
+- [x] **Membership Interaction:** Implemented `MembershipCard` with interactive hints for account settings.
+- [x] **Sponsorship System:** Added a dedicated `/sponsor` page with a multi-step simulated Stripe payment flow for portfolio demonstration.
 
 ## Change Tracking (Git Sync)
 | Date       | Description | Changes | Commit |
 |------------|-------------|---------|--------|
-| 2026-05-18 | Dashboard Revamp | Transformed Dashboard into a Server Component with real DB data and fixed Auth config. | - |
+| 2026-05-25 | Membership Features | Implemented interactive Membership card and Stripe simulation modal. | Membership |
+| 2026-05-19 | Build & Sync Fixes | Resolved Turbopack errors and synchronized comment actions. | 02805f6 |
+| 2026-05-18 | TS & Drizzle Cleanup | Fixed implicit 'any' errors and unified Drizzle ORM syntax. | ab1b081 |
+| 2026-05-18 | Build Stability | Injected dummy DB URL for build time and forced dynamic rendering. | 06e9e5e |
+| 2026-05-18 | Dashboard Revamp | Transformed Dashboard into a Server Component with real DB data. | - |
 | 2026-05-18 | Finalized Discussion | Integrated discussion system with schema fixes and DB stability. | 06e2c56 |
 | 2026-05-17 | Discussion Feature | Implemented comments system with DB storage and specialized UI at `/comments`. | 06e2c56 |
 | 2026-05-17 | Stability Fix | Returned to `postgres.js` driver for reliable DB connection. | 06e2c56 |
