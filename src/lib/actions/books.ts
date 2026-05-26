@@ -47,3 +47,29 @@ export async function deleteBook(id: number) {
       return { success: false };
     }
 }
+
+export async function updateBook(id: number, values: {
+  title: string;
+  slug: string;
+  description?: string;
+}) {
+  try {
+    await db.update(booksTable)
+      .set({
+        title: values.title,
+        slug: values.slug,
+        description: values.description,
+      })
+      .where(eq(booksTable.id, id));
+
+    revalidatePath("/admin");
+    revalidatePath("/chapters");
+    revalidatePath("/dashboard");
+    revalidatePath(`/books/${id}`);
+    
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating book:", error);
+    return { success: false, error: "Failed to update book in the archive." };
+  }
+}

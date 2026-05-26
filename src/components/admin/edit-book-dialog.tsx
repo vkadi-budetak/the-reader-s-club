@@ -19,8 +19,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Plus, Loader2 } from "lucide-react";
-import { addBook } from "@/lib/actions/books";
+import { Edit, Loader2 } from "lucide-react";
+import { updateBook } from "@/lib/actions/books";
+
+interface Book {
+  id: number;
+  title: string;
+  slug: string;
+  description: string | null;
+}
+
+interface EditBookDialogProps {
+  book: Book;
+}
 
 interface BookFormValues {
   title: string;
@@ -28,26 +39,25 @@ interface BookFormValues {
   description: string;
 }
 
-export function AddBookDialog() {
+export function EditBookDialog({ book }: EditBookDialogProps) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const form = useForm<BookFormValues>({
     defaultValues: {
-      title: "",
-      slug: "",
-      description: "",
+      title: book.title,
+      slug: book.slug,
+      description: book.description || "",
     },
   });
 
   async function onSubmit(values: BookFormValues) {
     setLoading(true);
-    const result = await addBook(values);
+    const result = await updateBook(book.id, values);
     setLoading(false);
     
     if (result.success) {
       setOpen(false);
-      form.reset();
     } else {
       alert(result.error);
     }
@@ -56,14 +66,14 @@ export function AddBookDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-red-900 hover:bg-red-700 text-white font-serif uppercase tracking-widest text-xs px-6 py-6 rounded-sm transition-all shadow-lg flex items-center gap-2">
-          <Plus size={16} /> Add New Volume
+        <Button variant="outline" size="icon" className="h-8 w-8 border-zinc-800 text-zinc-500 hover:text-white hover:border-red-900">
+          <Edit size={14} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px] bg-zinc-950 border-zinc-900 text-white">
         <DialogHeader>
           <DialogTitle className="text-2xl font-serif font-bold uppercase tracking-tighter">
-            Manifest New <span className="text-red-700">Volume</span>
+            Alter Existing <span className="text-red-700">Volume</span>
           </DialogTitle>
         </DialogHeader>
 
@@ -107,7 +117,7 @@ export function AddBookDialog() {
                   <FormControl>
                     <textarea 
                       {...field} 
-                      className="w-full min-h-[100px] bg-black border border-zinc-800 p-3 rounded-sm text-sm focus:outline-none focus:border-red-900 transition-colors"
+                      className="w-full min-h-[150px] bg-black border border-zinc-800 p-3 rounded-sm text-sm focus:outline-none focus:border-red-900 transition-colors"
                       placeholder="Describe the darkness..."
                     />
                   </FormControl>
@@ -121,7 +131,7 @@ export function AddBookDialog() {
               disabled={loading}
               className="w-full bg-red-900 hover:bg-red-700 py-6 font-serif uppercase tracking-widest mt-4"
             >
-              {loading ? <Loader2 className="animate-spin mr-2" /> : "Bind to Archive"}
+              {loading ? <Loader2 className="animate-spin mr-2" /> : "Rebind Volume"}
             </Button>
           </form>
         </Form>
