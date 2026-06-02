@@ -51,7 +51,7 @@ export default async function AdminDashboard() {
 
   const recentComments = await db.query.commentsTable.findMany({
     limit: 5,
-    orderBy: (commentsTable, { desc }) => [desc(commentsTable.createdAt)],
+    orderBy: (t, { desc }) => [desc(t.createdAt)],
     with: {
       user: true,
     },
