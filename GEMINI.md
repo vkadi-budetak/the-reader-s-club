@@ -37,6 +37,7 @@
 - [x] **Home Page UX:** Maintained a clean, atmospheric Hero section with dynamic session-based CTA.
 - [x] **Simplified Structure:** Removed separate chapters landing and reader pages. Integrated story snippets directly into the book details page for better immersion.
 - [x] **Infrastructure Optimization:** Implemented `api/cron/keep-alive` endpoint for database warming to prevent project sleep/timeouts in production.
+- [x] **Admin Stability:** Resolved strict TypeScript errors in the Admin Sanctum related to Drizzle queries and data mapping.
 - [x] **Database Stability:** Switched to `postgres.js` driver to prevent `fetch failed` errors during server-side session checks.
 - [x] **Build Optimization:** Forced dynamic rendering for DB-dependent routes to ensure fresh data and stable builds.
 - [x] **Type Safety:** Resolved implicit `any` errors across dashboard and comment actions.
@@ -55,7 +56,8 @@
 ## Change Tracking (Git Sync)
 | Date       | Description | Changes | Commit |
 |------------|-------------|---------|--------|
-| 2026-05-26 | Mobile Stability | Reverted mobile menu experiment due to hydration issues; kept UI responsive tweaks. | (current branch: mobile-responsive) |
+| 2026-06-02 | Infrastructure & Stability | Implemented Keep-Alive cron job, fixed Admin type errors, and synchronized main branch. | 267258b |
+| 2026-05-26 | Mobile Stability | Reverted mobile menu experiment due to hydration issues; kept UI responsive tweaks. | (current branch: main) |
 | 2026-05-26 | Admin Enhancements | Implemented Edit Book/Fragment, simplified forms, and Recent Activity section. | bd4b0a7 |
 | 2026-05-25 | Stability Fixes | Resolved type errors, hydration issues, and sidebar data mapping. | 64a5119 |
 | 2026-05-25 | Admin & CMS | Implemented Admin Panel, Chapters management, and dynamic book viewer. | 7b6c839 |

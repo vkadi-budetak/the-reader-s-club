@@ -74,17 +74,17 @@ export function EditChapterDialog({ chapter }: EditChapterDialogProps) {
           <Edit size={14} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[700px] bg-zinc-950 border-zinc-900 text-white max-h-[90vh] overflow-y-auto">
+      <DialogContent className="w-[95vw] sm:max-w-[700px] bg-zinc-950 border-zinc-900 text-white p-5 md:p-6 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-serif font-bold uppercase tracking-tighter">
+          <DialogTitle className="text-xl md:text-2xl font-serif font-bold uppercase tracking-tighter text-center md:text-left">
             Alter <span className="text-red-700">Fragment</span>
           </DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
-            <div className="grid grid-cols-4 gap-4">
-                <div className="col-span-3">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="md:col-span-3">
                     <FormField
                         control={form.control}
                         name="title"
@@ -99,7 +99,7 @@ export function EditChapterDialog({ chapter }: EditChapterDialogProps) {
                         )}
                     />
                 </div>
-                <div className="col-span-1">
+                <div className="md:col-span-1">
                     <FormField
                         control={form.control}
                         name="order"

@@ -70,16 +70,16 @@ export function EditBookDialog({ book }: EditBookDialogProps) {
           <Edit size={14} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] bg-zinc-950 border-zinc-900 text-white">
+      <DialogContent className="w-[95vw] sm:max-w-[500px] bg-zinc-950 border-zinc-900 text-white p-5 md:p-6 overflow-y-auto max-h-[90vh]">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-serif font-bold uppercase tracking-tighter">
+          <DialogTitle className="text-xl md:text-2xl font-serif font-bold uppercase tracking-tighter text-center md:text-left">
             Alter Existing <span className="text-red-700">Volume</span>
           </DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="title"

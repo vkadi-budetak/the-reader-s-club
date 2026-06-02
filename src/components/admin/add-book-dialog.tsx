@@ -60,7 +60,7 @@ export function AddBookDialog() {
           <Plus size={16} /> Add New Volume
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-[95vw] max-w-[500px] bg-zinc-950 border-zinc-900 text-white p-6">
+      <DialogContent className="w-[95vw] sm:max-w-[500px] bg-zinc-950 border-zinc-900 text-white p-5 md:p-6 overflow-y-auto max-h-[90vh]">
         <DialogHeader>
           <DialogTitle className="text-xl md:text-2xl font-serif font-bold uppercase tracking-tighter text-center md:text-left">
             Manifest New <span className="text-red-700">Volume</span>

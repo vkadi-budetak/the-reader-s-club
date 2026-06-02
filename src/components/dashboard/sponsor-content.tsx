@@ -64,16 +64,16 @@ export function SponsorContent() {
 
   if (step === "processing") {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-8">
+      <div className="flex flex-col items-center justify-center min-h-[50vh] md:min-h-[60vh] space-y-6 md:space-y-8 p-4 text-center">
         <div className="relative">
           <div className="absolute inset-0 bg-red-900/20 blur-3xl rounded-full animate-pulse" />
-          <Loader2 className="h-20 w-20 text-red-900 animate-spin relative z-10" />
+          <Loader2 className="h-16 w-16 md:h-20 md:w-20 text-red-900 animate-spin relative z-10" />
         </div>
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl font-serif font-bold uppercase tracking-[0.2em] text-white">
+        <div className="space-y-4">
+          <h2 className="text-xl md:text-3xl font-serif font-bold uppercase tracking-[0.2em] text-white">
             Verifying the Sacrifice
           </h2>
-          <p className="text-zinc-500 font-mono text-lg animate-pulse">
+          <p className="text-zinc-500 font-mono text-sm md:text-lg animate-pulse">
             Processing your pledge for the {selectedPlan} rank...
           </p>
         </div>
@@ -83,21 +83,21 @@ export function SponsorContent() {
 
   if (step === "success") {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-8 animate-in fade-in zoom-in duration-700">
-        <div className="h-24 w-24 bg-red-900/10 rounded-full flex items-center justify-center border border-red-900/50 shadow-[0_0_50px_rgba(153,27,27,0.4)]">
-          <Crown className="h-12 w-12 text-red-600" />
+      <div className="flex flex-col items-center justify-center min-h-[50vh] md:min-h-[60vh] space-y-6 md:space-y-8 p-4 animate-in fade-in zoom-in duration-700 text-center">
+        <div className="h-20 w-20 md:h-24 md:w-24 bg-red-900/10 rounded-full flex items-center justify-center border border-red-900/50 shadow-[0_0_50px_rgba(153,27,27,0.4)]">
+          <Crown className="h-10 w-10 md:h-12 md:w-12 text-red-600" />
         </div>
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl font-serif font-bold uppercase tracking-tighter text-white">
+        <div className="space-y-4">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold uppercase tracking-tighter text-white">
             Oath Confirmed
           </h2>
-          <p className="text-zinc-400 font-serif italic text-xl max-w-md mx-auto leading-relaxed">
+          <p className="text-zinc-400 font-serif italic text-base md:text-xl max-w-md mx-auto leading-relaxed">
             Welcome, {selectedPlan}. Your status has been elevated. The shadows now recognize your devotion.
           </p>
         </div>
         <Button
           onClick={() => router.push("/dashboard")}
-          className="bg-red-900 hover:bg-red-700 text-white font-serif py-8 px-12 text-lg uppercase tracking-widest transition-all duration-500 rounded-sm shadow-2xl"
+          className="w-full md:w-auto bg-red-900 hover:bg-red-700 text-white font-serif py-6 md:py-8 px-8 md:px-12 text-sm md:text-lg uppercase tracking-widest transition-all duration-500 rounded-sm shadow-2xl"
         >
           Return to Archive
         </Button>
@@ -106,28 +106,28 @@ export function SponsorContent() {
   }
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8 md:space-y-12">
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-900 pb-8 gap-6">
         <div>
-          <h1 className="text-3xl md:text-5xl font-serif font-bold text-white uppercase tracking-tighter">
+          <h1 className="text-3xl md:text-5xl font-serif font-bold text-white uppercase tracking-tighter leading-tight">
             Elevate Your <span className="text-red-700">Presence</span>
           </h1>
-          <p className="text-zinc-500 italic mt-2 font-serif text-base md:text-lg">
+          <p className="text-zinc-500 italic mt-2 font-serif text-sm md:text-lg">
             Choose your rank and support the eternal archive.
           </p>
         </div>
         <Link href="/dashboard" className="w-full md:w-auto">
-          <Button variant="outline" className="w-full md:w-auto border-zinc-800 text-zinc-500 hover:text-white hover:border-red-900 bg-transparent uppercase text-[10px] tracking-widest font-mono">
+          <Button variant="outline" className="w-full md:w-auto border-zinc-800 text-zinc-500 hover:text-white hover:border-red-900 bg-transparent uppercase text-[10px] tracking-widest font-mono py-6 md:py-4">
             <ArrowLeft className="mr-2 h-3 w-3" /> Back to Library
           </Button>
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {plans.map((plan) => (
           <div
             key={plan.name}
-            className={`relative p-8 rounded-sm border flex flex-col transition-all hover:translate-y-[-8px] duration-500 ${
+            className={`relative p-6 md:p-8 rounded-sm border flex flex-col transition-all md:hover:translate-y-[-8px] duration-500 ${
               plan.popular
                 ? "border-red-900 bg-red-950/5 shadow-[0_0_40px_rgba(153,27,27,0.15)]"
                 : "border-zinc-900 bg-zinc-950/50"

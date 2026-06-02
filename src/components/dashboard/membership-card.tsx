@@ -22,7 +22,7 @@ export function MembershipCard({ session, bookCount }: MembershipCardProps) {
   };
 
   return (
-    <div className="bg-zinc-950 p-6 md:p-8 rounded-sm border border-red-900/10 shadow-2xl relative md:sticky md:top-8 z-10">
+    <div className="bg-zinc-950 p-5 md:p-8 rounded-sm border border-red-900/10 shadow-2xl relative md:sticky md:top-8 z-10">
       <div className="flex items-center justify-between mb-6 border-b border-zinc-900 pb-4">
         <h3 className="text-xl font-serif font-bold text-white uppercase tracking-tighter">
           Membership
@@ -31,9 +31,9 @@ export function MembershipCard({ session, bookCount }: MembershipCardProps) {
       </div>
 
       <div className="space-y-6 text-sm font-mono">
-        <div className="flex justify-between items-center">
-          <span className="text-zinc-500 uppercase text-[10px]">Alias:</span>
-          <span className="text-zinc-200 truncate max-w-[120px]">
+        <div className="flex justify-between items-center gap-2">
+          <span className="text-zinc-500 uppercase text-[10px] shrink-0">Alias:</span>
+          <span className="text-zinc-200 truncate text-right">
             {session.user?.name}
           </span>
         </div>

@@ -76,29 +76,29 @@ export default async function ManageChapters({ params }: PageProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Список розділів */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-6 order-2 lg:order-1">
             <h2 className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.3em] mb-4">Existing Fragments</h2>
             
             {chapters.length === 0 ? (
-              <div className="bg-zinc-950 border border-zinc-900 border-dashed p-16 text-center space-y-4 rounded-sm">
+              <div className="bg-zinc-950 border border-zinc-900 border-dashed p-10 md:p-16 text-center space-y-4 rounded-sm">
                 <Scroll className="h-12 w-12 text-zinc-800 mx-auto opacity-20" />
                 <p className="text-zinc-600 font-serif italic text-sm">No fragments have been bound to this volume yet.</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {chapters.map((chapter: Chapter) => (
-                  <div key={chapter.id} className="bg-zinc-950 border border-zinc-900 p-6 rounded-sm hover:border-zinc-800 transition-all group">
+                  <div key={chapter.id} className="bg-zinc-950 border border-zinc-900 p-5 md:p-6 rounded-sm hover:border-zinc-800 transition-all group">
                     <div className="flex justify-between items-start mb-4">
                       <div className="space-y-1">
                         <span className="text-[9px] font-mono text-red-900 uppercase tracking-widest">Fragment {chapter.order}</span>
-                        <h3 className="text-xl font-serif font-bold text-white">{chapter.title}</h3>
+                        <h3 className="text-lg md:text-xl font-serif font-bold text-white">{chapter.title}</h3>
                       </div>
                       <div className="flex gap-2">
                         <EditChapterDialog chapter={chapter} />
                         <DeleteChapterButton chapterId={chapter.id} bookId={bookId} chapterTitle={chapter.title} />
                       </div>
                     </div>
-                    <p className="text-zinc-500 text-sm italic font-serif line-clamp-3 leading-relaxed">
+                    <p className="text-zinc-500 text-xs md:text-sm italic font-serif line-clamp-3 leading-relaxed">
                       &quot;{chapter.content}&quot;
                     </p>
                   </div>
@@ -108,9 +108,9 @@ export default async function ManageChapters({ params }: PageProps) {
           </div>
 
           {/* Форма додавання */}
-          <div className="space-y-6">
+          <div className="space-y-6 order-1 lg:order-2">
              <h2 className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.3em] mb-4">New Fragment</h2>
-             <div className="bg-zinc-950 border border-zinc-900 p-8 rounded-sm lg:sticky lg:top-8">
+             <div className="bg-zinc-950 border border-zinc-900 p-6 md:p-8 rounded-sm lg:sticky lg:top-8">
                 <AddChapterForm bookId={bookId} nextOrder={chapters.length + 1} />
              </div>
           </div>
