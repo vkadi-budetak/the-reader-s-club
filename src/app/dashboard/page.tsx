@@ -78,7 +78,7 @@ export default async function Dashboard() {
             {books.map((book) => (
               <div 
                 key={book.id}
-                className="bg-zinc-900/30 p-8 rounded-sm border border-zinc-800 hover:border-red-900/40 transition-all group relative"
+                className="bg-zinc-900/30 p-6 md:p-8 rounded-sm border border-zinc-800 hover:border-red-900/40 transition-all group relative"
               >
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
@@ -87,7 +87,7 @@ export default async function Dashboard() {
                     </span>
                   </div>
                   <Link href={`/books/${book.slug}`}>
-                    <h3 className="text-3xl font-bold text-white group-hover:text-red-700 transition-colors font-serif">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-red-700 transition-colors font-serif">
                       {book.title}
                     </h3>
                   </Link>
@@ -114,7 +114,7 @@ export default async function Dashboard() {
             ))}
 
             {/* Locked Volume Placeholder */}
-            <div className="bg-black/60 p-8 rounded-sm border border-zinc-900 relative overflow-hidden group">
+            <div className="bg-black/60 p-6 md:p-8 rounded-sm border border-zinc-900 relative overflow-hidden group">
               <div className="absolute inset-0 bg-zinc-950/60 backdrop-blur-[2px]" />
               <div className="relative z-10 opacity-30 flex flex-col justify-center min-h-[120px]">
                 <div className="flex justify-between items-start">

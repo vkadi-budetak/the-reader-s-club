@@ -57,9 +57,9 @@ export function DynamicSidebar() {
                     : "border-transparent text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/50"
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 overflow-hidden">
                   <Book size={12} className={currentSlug === book.slug ? "text-red-700" : "text-zinc-700"} />
-                  <span className="truncate max-w-[180px]">{book.title}</span>
+                  <span className="truncate max-w-[140px] md:max-w-[180px]">{book.title}</span>
                 </div>
                 <ChevronRight
                   size={12}

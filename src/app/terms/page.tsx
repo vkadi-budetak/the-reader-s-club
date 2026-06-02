@@ -1,8 +1,8 @@
 export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-black">
-      <div className="max-w-3xl mx-auto px-6 py-12 prose prose-invert prose-red">
-        <h1 className="text-4xl font-serif font-bold mb-6 text-red-700 tracking-tighter">
+      <div className="max-w-3xl mx-auto px-4 md:px-6 py-12 prose prose-invert prose-red">
+        <h1 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-red-700 tracking-tighter">
           The Unholy Agreement
         </h1>
         <p className="text-gray-500 text-sm mb-8 italic">

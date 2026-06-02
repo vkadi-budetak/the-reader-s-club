@@ -46,7 +46,7 @@ export default async function CommentsPage({ params }: PageProps) {
         {/* Form Section */}
         <section className="mb-16">
           {session && session.user?.id ? (
-            <div className="bg-zinc-950 p-8 border border-zinc-900 rounded-sm shadow-2xl relative overflow-hidden">
+            <div className="bg-zinc-950 p-6 md:p-8 border border-zinc-900 rounded-sm shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-4 opacity-5">
                 <Ghost size={60} />
               </div>
@@ -102,7 +102,7 @@ export default async function CommentsPage({ params }: PageProps) {
                       </div>
                     </div>
                   </div>
-                  <p className="text-zinc-400 font-serif italic text-base leading-relaxed pl-11">
+                  <p className="text-zinc-400 font-serif italic text-base leading-relaxed md:pl-11">
                     &quot;{comment.content}&quot;
                   </p>
                 </div>

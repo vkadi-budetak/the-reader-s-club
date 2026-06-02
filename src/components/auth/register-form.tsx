@@ -60,15 +60,15 @@ export function RegisterForm() {
         </Link>
       </div>
 
-      <CardHeader className="space-y-1 text-center border-b border-zinc-900 mb-6">
-        <CardTitle className="text-3xl font-serif font-bold text-white tracking-tighter uppercase">
+      <CardHeader className="space-y-1 text-center border-b border-zinc-900 mb-6 p-4 md:p-6">
+        <CardTitle className="text-2xl md:text-3xl font-serif font-bold text-white tracking-tighter uppercase">
           Join the Circle
         </CardTitle>
-        <CardDescription className="text-zinc-500 italic">
+        <CardDescription className="text-zinc-500 italic text-xs md:text-sm">
           Enter your details to witness the unspoken.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-4 md:p-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField

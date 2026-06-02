@@ -15,6 +15,7 @@ export default function NavBar() {
     <nav className="flex items-center gap-8">
       <Link
         href="/our-history"
+
         className={`text-sm font-serif tracking-wide transition-colors hover:text-red-600 ${
           isActive("/our-history") ? "text-red-700 font-bold" : "text-zinc-400"
         }`}
@@ -51,21 +52,6 @@ export default function NavBar() {
       )}
 
       <div className="h-4 w-px bg-zinc-800" />
-      {/* Кнопка Профілю */}
-      {/* <Link
-        href="/profile-page"
-        className="text-sm font-serif font-bold bg-red-900 text-white px-5 py-2 rounded-sm hover:bg-red-700 transition-all shadow-[0_0_15px_rgba(153,27,27,0.2)] uppercase tracking-tighter"
-      >
-        Profile
-      </Link>
-
-      <Link
-        href="/sign-up-page"
-        className="text-sm font-serif font-bold bg-red-900 text-white px-5 py-2 rounded-sm hover:bg-red-700 transition-all shadow-[0_0_15px_rgba(153,27,27,0.2)] uppercase tracking-tighter"
-      >
-        Join the Circle
-      </Link> */}
-      {/* Компонент SignInSignOut */}
       <SignInSignOut />
     </nav>
   );

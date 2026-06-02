@@ -110,7 +110,7 @@ export default async function ManageChapters({ params }: PageProps) {
           {/* Форма додавання */}
           <div className="space-y-6">
              <h2 className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.3em] mb-4">New Fragment</h2>
-             <div className="bg-zinc-950 border border-zinc-900 p-8 rounded-sm sticky top-8">
+             <div className="bg-zinc-950 border border-zinc-900 p-8 rounded-sm lg:sticky lg:top-8">
                 <AddChapterForm bookId={bookId} nextOrder={chapters.length + 1} />
              </div>
           </div>

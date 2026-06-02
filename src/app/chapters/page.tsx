@@ -89,10 +89,10 @@ export default async function ChaptersPage() {
 
         {/* Guest CTA Section */}
         {!session && (
-          <div className="mt-20 p-12 bg-zinc-950 border border-red-900/20 rounded-sm text-center relative overflow-hidden">
+          <div className="mt-20 p-8 md:p-12 bg-zinc-950 border border-red-900/20 rounded-sm text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-red-900/5 blur-3xl rounded-full translate-y-1/2" />
             <div className="relative z-10 space-y-6">
-              <h2 className="text-3xl font-serif font-bold text-white uppercase tracking-tighter">
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-white uppercase tracking-tighter">
                 Ready to Witness the <span className="text-red-800">Unspoken</span>?
               </h2>
               <p className="max-w-md mx-auto text-zinc-500 text-sm font-serif italic">

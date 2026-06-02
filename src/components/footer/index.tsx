@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0a0a0a] border-t border-zinc-900 py-16">
-      <div className="container mx-auto px-10">
+      <div className="container mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12">
           {/* Logo Section */}
           <div className="flex flex-col items-center md:items-start">
@@ -27,7 +27,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="flex gap-16">
+          <div className="flex gap-8 md:gap-16">
             <div className="flex flex-col gap-3">
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-red-800">
                 The Archive
