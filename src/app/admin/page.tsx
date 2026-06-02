@@ -20,6 +20,16 @@ interface Book {
   createdAt: Date;
 }
 
+interface Comment {
+  id: number;
+  content: string;
+  createdAt: Date;
+  bookSlug: string;
+  user: {
+    name: string;
+  };
+}
+
 export default async function AdminDashboard() {
   const session = await getServerSession(authOptions);
 
@@ -55,7 +65,7 @@ export default async function AdminDashboard() {
     with: {
       user: true,
     },
-  });
+  }) as unknown as Comment[];
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pb-20 pt-10 text-gray-300">
@@ -141,7 +151,7 @@ export default async function AdminDashboard() {
                         <p className="text-zinc-600 font-serif italic text-sm">No testimonies have been recorded yet.</p>
                     </div>
                 ) : (
-                    recentComments.map((comment) => (
+                    recentComments.map((comment: Comment) => (
                         <div key={comment.id} className="p-6 border-b border-zinc-900 last:border-0 hover:bg-zinc-900/10 transition-colors">
                             <div className="flex justify-between items-start mb-2">
                                 <p className="text-[10px] font-mono text-red-800 uppercase tracking-widest">{comment.user.name}</p>
