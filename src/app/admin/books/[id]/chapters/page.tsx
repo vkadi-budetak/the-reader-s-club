@@ -8,6 +8,7 @@ import { ChevronLeft, Scroll } from "lucide-react";
 import Link from "next/link";
 import { AddChapterForm } from "./add-chapter-form";
 import { DeleteChapterButton } from "./delete-chapter-button";
+import { EditChapterDialog } from "./edit-chapter-dialog";
 
 export const dynamic = "force-dynamic";
 
@@ -92,7 +93,10 @@ export default async function ManageChapters({ params }: PageProps) {
                         <span className="text-[9px] font-mono text-red-900 uppercase tracking-widest">Fragment {chapter.order}</span>
                         <h3 className="text-xl font-serif font-bold text-white">{chapter.title}</h3>
                       </div>
-                      <DeleteChapterButton chapterId={chapter.id} bookId={bookId} chapterTitle={chapter.title} />
+                      <div className="flex gap-2">
+                        <EditChapterDialog chapter={chapter} />
+                        <DeleteChapterButton chapterId={chapter.id} bookId={bookId} chapterTitle={chapter.title} />
+                      </div>
                     </div>
                     <p className="text-zinc-500 text-sm italic font-serif line-clamp-3 leading-relaxed">
                       &quot;{chapter.content}&quot;

@@ -52,3 +52,28 @@ export async function deleteChapter(id: number, bookId: number) {
     return { success: false };
   }
 }
+
+export async function updateChapter(id: number, values: {
+  title: string;
+  content: string;
+  order: number;
+  bookId: number;
+}) {
+  try {
+    await db.update(chaptersTable)
+      .set({
+        title: values.title,
+        content: values.content,
+        order: values.order,
+      })
+      .where(eq(chaptersTable.id, id));
+
+    revalidatePath(`/admin/books/${values.bookId}/chapters`);
+    revalidatePath(`/books/[id]`);
+    
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating chapter:", error);
+    return { success: false, error: "Failed to update fragment." };
+  }
+}
