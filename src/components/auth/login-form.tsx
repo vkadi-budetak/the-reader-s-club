@@ -19,7 +19,7 @@ export function LoginForm() {
   };
 
   return (
-    <div className="relative bg-zinc-950 p-8 border border-zinc-900 shadow-2xl rounded-sm">
+    <div className="relative bg-zinc-950 p-6 md:p-8 border border-zinc-900 shadow-2xl rounded-sm">
       <div className="absolute top-4 right-4">
         <Link href="/">
           <Button

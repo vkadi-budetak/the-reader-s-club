@@ -48,7 +48,7 @@ export function CommentForm({ bookSlug, userId }: { bookSlug: string; userId: st
         <Button
           type="submit"
           disabled={isSubmitting || !content.trim()}
-          className="bg-red-900 hover:bg-red-700 text-white font-serif px-8 py-6 rounded-sm uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(153,27,27,0.2)]"
+          className="w-full md:w-auto bg-red-900 hover:bg-red-700 text-white font-serif px-8 py-6 rounded-sm uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(153,27,27,0.2)]"
         >
           {isSubmitting ? (
             <Loader2 className="animate-spin" size={18} />

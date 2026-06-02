@@ -56,20 +56,20 @@ export function AddBookDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-red-900 hover:bg-red-700 text-white font-serif uppercase tracking-widest text-xs px-6 py-6 rounded-sm transition-all shadow-lg flex items-center gap-2">
+        <Button className="w-full md:w-auto bg-red-900 hover:bg-red-700 text-white font-serif uppercase tracking-widest text-xs px-6 py-6 rounded-sm transition-all shadow-lg flex items-center justify-center gap-2">
           <Plus size={16} /> Add New Volume
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] bg-zinc-950 border-zinc-900 text-white">
+      <DialogContent className="w-[95vw] max-w-[500px] bg-zinc-950 border-zinc-900 text-white p-6">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-serif font-bold uppercase tracking-tighter">
+          <DialogTitle className="text-xl md:text-2xl font-serif font-bold uppercase tracking-tighter text-center md:text-left">
             Manifest New <span className="text-red-700">Volume</span>
           </DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="title"

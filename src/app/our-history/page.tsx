@@ -19,7 +19,7 @@ export default async function OurHistory() {
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-4xl font-serif font-bold mb-6 text-white tracking-tight">
+            <h1 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-white tracking-tight">
               The Origins
             </h1>
 

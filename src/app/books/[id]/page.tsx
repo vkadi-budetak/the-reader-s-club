@@ -61,7 +61,7 @@ export default async function BookDetails({ params }: PageProps) {
             <ChevronDown size={12} className="transition-transform duration-300 group-hover:rotate-180" />
           </button>
 
-          <div className="absolute top-full right-0 mt-2 w-80 z-[100] opacity-0 scale-95 -translate-y-2 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 origin-top-right">
+          <div className="absolute top-full right-0 mt-2 w-[calc(100vw-3rem)] md:w-80 z-[100] opacity-0 scale-95 -translate-y-2 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 origin-top-right">
             <div className="bg-zinc-950 border border-zinc-900 shadow-[0_20px_50px_rgba(0,0,0,1)] p-2">
               <DynamicSidebar />
             </div>

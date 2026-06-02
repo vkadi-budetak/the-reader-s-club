@@ -107,17 +107,17 @@ export function SponsorContent() {
 
   return (
     <div className="space-y-12">
-      <div className="flex items-center justify-between border-b border-zinc-900 pb-8">
+      <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-900 pb-8 gap-6">
         <div>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white uppercase tracking-tighter">
+          <h1 className="text-3xl md:text-5xl font-serif font-bold text-white uppercase tracking-tighter">
             Elevate Your <span className="text-red-700">Presence</span>
           </h1>
-          <p className="text-zinc-500 italic mt-2 font-serif text-lg">
+          <p className="text-zinc-500 italic mt-2 font-serif text-base md:text-lg">
             Choose your rank and support the eternal archive.
           </p>
         </div>
-        <Link href="/dashboard">
-          <Button variant="outline" className="border-zinc-800 text-zinc-500 hover:text-white hover:border-red-900 bg-transparent uppercase text-[10px] tracking-widest font-mono">
+        <Link href="/dashboard" className="w-full md:w-auto">
+          <Button variant="outline" className="w-full md:w-auto border-zinc-800 text-zinc-500 hover:text-white hover:border-red-900 bg-transparent uppercase text-[10px] tracking-widest font-mono">
             <ArrowLeft className="mr-2 h-3 w-3" /> Back to Library
           </Button>
         </Link>
@@ -179,15 +179,15 @@ export function SponsorContent() {
         ))}
       </div>
 
-      <div className="mt-12 p-8 bg-zinc-950 border border-zinc-900 rounded-sm text-center">
+      <div className="mt-12 p-6 md:p-8 bg-zinc-950 border border-zinc-900 rounded-sm text-center">
         <p className="text-[10px] text-zinc-600 font-mono uppercase tracking-[0.3em] mb-4">
           All transactions are secured via <span className="text-zinc-400">Gnostic Encryption</span>
         </p>
-        <div className="flex justify-center gap-8 opacity-20 grayscale">
+        <div className="flex justify-center gap-4 md:gap-8 opacity-20 grayscale">
           {/* Фейкові лого платіжок для атмосфери */}
-          <div className="text-white font-bold tracking-tighter text-xl">VISA</div>
-          <div className="text-white font-bold tracking-tighter text-xl">STRIPE</div>
-          <div className="text-white font-bold tracking-tighter text-xl">MASTERCARD</div>
+          <div className="text-white font-bold tracking-tighter text-lg md:text-xl">VISA</div>
+          <div className="text-white font-bold tracking-tighter text-lg md:text-xl">STRIPE</div>
+          <div className="text-white font-bold tracking-tighter text-lg md:text-xl">MASTERCARD</div>
         </div>
       </div>
     </div>

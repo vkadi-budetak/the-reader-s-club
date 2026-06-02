@@ -32,22 +32,22 @@ export function BookViewer({ initialChapters }: BookViewerProps) {
   }
 
   return (
-    <section className="space-y-8 bg-zinc-950 p-8 border border-zinc-900 rounded-sm">
+    <section className="space-y-8 bg-zinc-950 p-4 md:p-8 border border-zinc-900 rounded-sm">
       <div className="flex items-center justify-between border-b border-zinc-900 pb-4">
         <h2 className="text-[10px] font-mono text-red-800 uppercase tracking-[0.4em] flex items-center gap-2">
           <Sparkles size={14} /> Memory Fragments
         </h2>
-        <span className="text-[10px] font-mono text-zinc-600 uppercase">
+        <span className="hidden sm:inline text-[10px] font-mono text-zinc-600 uppercase">
           Restricted Preview
         </span>
       </div>
 
-      <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide">
+      <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide -mx-2 px-2 md:mx-0 md:px-0">
         {initialChapters.map((s, i) => (
           <button
             key={s.id}
             onClick={() => setActiveSnippet(i)}
-            className={`px-4 py-2 text-[9px] font-mono uppercase tracking-widest border transition-all shrink-0 ${
+            className={`px-4 py-3 text-[10px] font-mono uppercase tracking-widest border transition-all shrink-0 ${
               activeSnippet === i 
                 ? "border-red-900 bg-red-950/20 text-white" 
                 : "border-zinc-800 text-zinc-600 hover:border-zinc-700"
@@ -59,10 +59,10 @@ export function BookViewer({ initialChapters }: BookViewerProps) {
       </div>
 
       <div className="min-h-[160px] animate-in fade-in duration-700">
-        <h4 className="text-white font-serif italic text-xl mb-4 text-red-700/80">
+        <h4 className="text-white font-serif italic text-lg md:text-xl mb-4 text-red-700/80">
           &ldquo;{initialChapters[activeSnippet].title}&rdquo;
         </h4>
-        <p className="text-gray-400 font-serif leading-relaxed text-xl italic whitespace-pre-wrap">
+        <p className="text-gray-400 font-serif leading-relaxed text-lg md:text-xl italic whitespace-pre-wrap">
           &ldquo;{initialChapters[activeSnippet].content}&rdquo;
         </p>
       </div>
