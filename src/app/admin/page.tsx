@@ -5,7 +5,7 @@ import { booksTable, usersTable, commentsTable } from "@/db/schema";
 import { Button } from "@/components/ui/button";
 import { Trash2, Edit, BookOpen, ShieldAlert, Scroll, MessageSquare } from "lucide-react";
 import Link from "next/link";
-import { count } from "drizzle-orm";
+import { count, desc } from "drizzle-orm";
 import { AddBookDialog } from "@/components/admin/add-book-dialog";
 import { EditBookDialog } from "@/components/admin/edit-book-dialog";
 import { DeleteBookButton } from "@/components/admin/delete-book-button";
@@ -49,10 +49,9 @@ export default async function AdminDashboard() {
   const [usersCountResult] = await db.select({ value: count() }).from(usersTable);
   const [commentsCountResult] = await db.select({ value: count() }).from(commentsTable);
 
-  // Технічний коментар для примусового оновлення та виправлення помилки типізації
   const recentComments = await db.query.commentsTable.findMany({
     limit: 5,
-    orderBy: (t, { desc }) => [desc(t.createdAt)],
+    orderBy: [desc(commentsTable.createdAt)],
     with: {
       user: true,
     },
