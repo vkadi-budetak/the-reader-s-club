@@ -49,6 +49,7 @@ export default async function AdminDashboard() {
   const [usersCountResult] = await db.select({ value: count() }).from(usersTable);
   const [commentsCountResult] = await db.select({ value: count() }).from(commentsTable);
 
+  // Технічний коментар для примусового оновлення та виправлення помилки типізації
   const recentComments = await db.query.commentsTable.findMany({
     limit: 5,
     orderBy: (t, { desc }) => [desc(t.createdAt)],
