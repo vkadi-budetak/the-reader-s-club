@@ -51,7 +51,7 @@ export default async function AdminDashboard() {
 
   const recentComments = await db.query.commentsTable.findMany({
     limit: 5,
-    orderBy: (comments, { desc }) => [desc(comments.createdAt)],
+    orderBy: (commentsTable, { desc }) => [desc(commentsTable.createdAt)],
     with: {
       user: true,
     },
@@ -75,10 +75,10 @@ export default async function AdminDashboard() {
         <div className="grid grid-cols-1 gap-4">
           <div className="bg-zinc-950 border border-zinc-900 rounded-sm overflow-hidden">
             <div className="grid grid-cols-12 gap-4 p-4 bg-zinc-900/50 text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500 border-b border-zinc-900">
-              <div className="col-span-1">ID</div>
-              <div className="col-span-4">Title / Slug</div>
-              <div className="col-span-5">Description</div>
-              <div className="col-span-2 text-right">Actions</div>
+              <div className="hidden md:block col-span-1">ID</div>
+              <div className="col-span-8 md:col-span-4">Title / Slug</div>
+              <div className="hidden md:block col-span-5">Description</div>
+              <div className="col-span-4 md:col-span-2 text-right">Actions</div>
             </div>
 
             {books.length === 0 ? (
@@ -89,17 +89,17 @@ export default async function AdminDashboard() {
             ) : (
               books.map((book: Book) => (
                 <div key={book.id} className="grid grid-cols-12 gap-4 p-6 items-center hover:bg-zinc-900/20 border-b border-zinc-900 last:border-0 transition-colors">
-                  <div className="col-span-1 font-mono text-zinc-700 text-xs">#{book.id}</div>
-                  <div className="col-span-4 space-y-1">
+                  <div className="hidden md:block col-span-1 font-mono text-zinc-700 text-xs">#{book.id}</div>
+                  <div className="col-span-8 md:col-span-4 space-y-1">
                     <p className="text-white font-serif font-bold text-lg">{book.title}</p>
                     <p className="text-[9px] font-mono text-zinc-600 uppercase tracking-widest">/{book.slug}</p>
                   </div>
-                  <div className="col-span-5">
+                  <div className="hidden md:block col-span-5">
                     <p className="text-zinc-500 text-xs italic font-serif line-clamp-1">
                       {book.description || "No description provided."}
                     </p>
                   </div>
-                  <div className="col-span-2 flex justify-end gap-2">
+                  <div className="col-span-4 md:col-span-2 flex justify-end gap-2">
                     <Link href={`/admin/books/${book.id}/chapters`}>
                       <Button variant="outline" size="icon" title="Manage Fragments" className="h-8 w-8 border-zinc-800 text-amber-600 hover:bg-amber-900/10 hover:border-amber-700">
                         <Scroll size={14} />
